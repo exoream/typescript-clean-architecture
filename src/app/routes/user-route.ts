@@ -10,6 +10,7 @@ const userController = new UserController(userService);
 
 export const userRoute = express.Router();
 userRoute.post("/register", userController.register.bind(userController));
+userRoute.post("/login", userController.login.bind(userController));
 
 
 

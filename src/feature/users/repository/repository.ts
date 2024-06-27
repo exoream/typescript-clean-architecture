@@ -1,5 +1,5 @@
 import { UserRepositoryInterface } from "../interface/interface";
-import { UserCore, UserRegister } from "../model/model";
+import { UserCore, UserLogin, UserRegister } from "../model/model";
 import { UserResponse } from "../dto/response/response";
 import { PrismaClient } from "@prisma/client";
 import {
@@ -9,7 +9,6 @@ import {
   listCoresToUsers,
   userRegisterToModel,
   userModelToUserResponse
-
 } from "../mapping/mapping";
 import { ResponseError } from "../../../utils/helper/response-error";
 
@@ -27,16 +26,16 @@ export class UserRepository implements UserRepositoryInterface {
     return response;
   }
 
-  async login(email: string, password: string): Promise<UserCore> {
+  async login(user: UserLogin): Promise<UserResponse> {
     const data = await this.db.user.findUnique({
-      where: { email: email, password: password },
+      where: { email: user.email },
     });
 
     if (!data) {
       throw new ResponseError(400, "User not found");
     }
 
-    const response = userToCore(data);
+    const response = userModelToUserResponse(data);
     return response;
   }
 

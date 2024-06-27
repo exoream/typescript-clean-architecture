@@ -1,5 +1,5 @@
 import { User, Prisma } from "@prisma/client";
-import { UserCore, UserRegister } from "../model/model";
+import { UserCore, UserLogin, UserRegister } from "../model/model";
 import { UserResponse } from "../dto/response/response";
 
 // User Model to Core
@@ -53,5 +53,12 @@ export function userModelToUserResponse(user: User): UserResponse {
     email: user.email,
     created_at: user.created_at.toISOString(),
     updated_at: user.updated_at.toISOString(),
+  };
+}
+
+export function userLoginToUserModel(user: UserLogin): Prisma.UserWhereUniqueInput {
+  return {
+    email: user.email,
+    password: user.password,
   };
 }

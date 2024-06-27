@@ -7,7 +7,7 @@ import {
   UserServiceInterface,
   UserRepositoryInterface,
 } from "../interface/interface";
-import { UserCore, UserRegister } from "../model/model";
+import { UserCore, UserRegister, UserLogin } from "../model/model";
 import { UserResponse } from "../dto/response/response";
 
 export class UserService implements UserServiceInterface {
@@ -36,31 +36,30 @@ export class UserService implements UserServiceInterface {
     return response;
   }
 
-  async login(
-    email: string,
-    password: string
-  ): Promise<{ user: UserCore; token: string }> {
-    const data = Validation.validate(UserValidation.LOGIN, { email, password });
+  async login(user: UserLogin): Promise<{ data: UserResponse; token: string }> {
+    const validatedData  = Validation.validate(UserValidation.LOGIN, { ...user});
 
-    if (!email || !password) {
+    if (!validatedData.email || !validatedData.password) {
       throw new ResponseError(400, "Please fill all fields");
     }
 
     // Check if email is registered
-    const user = await this.repository.getUserByEmail(email);
-    if (!user) {
+    const userData  = await this.repository.getUserByEmail(user.email);
+    if (!userData ) {
       throw new ResponseError(400, "User not found");
     }
 
     // Check if password is valid
-    const isPasswordValid = await comparePassword(password, data.password);
+    const isPasswordValid = await comparePassword(validatedData.password, userData.password);
     if (!isPasswordValid) {
       throw new ResponseError(400, "Invalid password");
     }
 
     // Create token
-    const token = createToken(user.id, user.role);
-    return { user, token };
+    const token = createToken(userData.id, userData.role);
+
+    const response = await this.repository.login(validatedData);
+    return { data: response, token };
   }
 
   async getAll(): Promise<UserCore[]> {
@@ -84,16 +83,16 @@ export class UserService implements UserServiceInterface {
       throw new ResponseError(400, "Id is required");
     }
 
-    if(data.name) {
-        user.name = data.name
+    if (data.name) {
+      user.name = data.name;
     }
 
-    if(data.email) {
-        user.email = data.email
+    if (data.email) {
+      user.email = data.email;
     }
 
-    if(data.password) {
-        user.password = await hashPassword(data.password)
+    if (data.password) {
+      user.password = await hashPassword(data.password);
     }
 
     const response = this.repository.update(id, data);
