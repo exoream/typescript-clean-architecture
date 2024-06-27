@@ -5,8 +5,7 @@ import { PrismaClient } from "@prisma/client";
 import {
   userToCore,
   coreToUser,
-  listUsersToCores,
-  listCoresToUsers,
+  listUserModelToUserResponse,
   userRegisterToModel,
   userModelToUserResponse
 } from "../mapping/mapping";
@@ -39,9 +38,9 @@ export class UserRepository implements UserRepositoryInterface {
     return response;
   }
 
-  async getAll(): Promise<UserCore[]> {
+  async getAll(): Promise<UserResponse[]> {
     const data = await this.db.user.findMany();
-    const response = listUsersToCores(data);
+    const response = listUserModelToUserResponse(data);
     return response;
   }
 

@@ -62,7 +62,7 @@ export class UserService implements UserServiceInterface {
     return { data: response, token };
   }
 
-  async getAll(): Promise<UserCore[]> {
+  async getAll(): Promise<UserResponse[]> {
     const response = await this.repository.getAll();
     return response;
   }

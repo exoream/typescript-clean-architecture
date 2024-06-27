@@ -4,7 +4,7 @@ import { UserResponse } from "../dto/response/response";
 export interface UserRepositoryInterface {
   register(user: UserRegister): Promise<UserResponse>;
   login(user: UserLogin): Promise<UserResponse>;
-  getAll(): Promise<UserCore[]>;
+  getAll(): Promise<UserResponse[]>;
   getById(id: string): Promise<UserCore>;
   update(id: string, user: UserCore): Promise<UserCore>;
   delete(id: string): Promise<UserCore>;
@@ -14,7 +14,7 @@ export interface UserRepositoryInterface {
 export interface UserServiceInterface {
   register(user: UserRegister): Promise<UserResponse>;
   login(user: UserLogin): Promise<{ data: UserResponse, token: string}>;
-  getAll(): Promise<UserCore[]>;
+  getAll(): Promise<UserResponse[]>;
   getById(id: string): Promise<UserCore>;
   update(id: string, user: UserCore): Promise<UserCore>;
   delete(id: string): Promise<UserCore>;

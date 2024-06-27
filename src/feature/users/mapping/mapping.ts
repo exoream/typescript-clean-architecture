@@ -56,6 +56,10 @@ export function userModelToUserResponse(user: User): UserResponse {
   };
 }
 
+export function listUserModelToUserResponse(users: User[]): UserResponse[] {
+  return users.map((user) => userModelToUserResponse(user));
+}
+
 export function userLoginToUserModel(user: UserLogin): Prisma.UserWhereUniqueInput {
   return {
     email: user.email,
