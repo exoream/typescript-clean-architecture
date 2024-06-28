@@ -67,7 +67,7 @@ export class UserService implements UserServiceInterface {
     return response;
   }
 
-  async getById(id: string): Promise<UserCore> {
+  async getById(id: string): Promise<UserResponse> {
     if (!id) {
       throw new ResponseError(400, "Id is required");
     }

@@ -44,14 +44,14 @@ export class UserRepository implements UserRepositoryInterface {
     return response;
   }
 
-  async getById(id: string): Promise<UserCore> {
+  async getById(id: string): Promise<UserResponse> {
     const data = await this.db.user.findUnique({ where: { id: id } });
 
     if (!data) {
       throw new ResponseError(400, "User not found");
     }
 
-    const response = userToCore(data);
+    const response = userModelToUserResponse(data);
     return response;
   }
 

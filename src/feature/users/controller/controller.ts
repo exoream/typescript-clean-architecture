@@ -42,4 +42,20 @@ export class UserController {
       next(error);
     }
   }
+
+  async getById(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id, role } = extraToken(req);
+      const userId = req.params.id;
+
+      if (role !== "admin" && id !== userId) {
+        return res.status(401).json({ error: "Unauthorized" });
+      }
+
+      const response = await this.userService.getById(userId);
+      return res.status(200).json({ data: response });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
