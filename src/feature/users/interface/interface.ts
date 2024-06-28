@@ -1,5 +1,4 @@
-import { UserCore, UserRegister, UserLogin, UserUpdate } from "../model/model";
-import { UserResponse } from "../dto/response/response";
+import { UserCore, UserRegister, UserLogin, UserUpdate, UserResponse } from "../model/model";
 
 export interface UserRepositoryInterface {
   register(user: UserRegister): Promise<UserResponse>;

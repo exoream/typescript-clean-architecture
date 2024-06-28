@@ -1,6 +1,5 @@
 import { UserRepositoryInterface } from "../interface/interface";
-import { UserCore, UserLogin, UserRegister, UserUpdate } from "../model/model";
-import { UserResponse } from "../dto/response/response";
+import { UserCore, UserLogin, UserRegister, UserUpdate, UserResponse } from "../model/model";
 import { PrismaClient } from "@prisma/client";
 import {
   userToCore,

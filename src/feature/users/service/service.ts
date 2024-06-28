@@ -7,8 +7,7 @@ import {
   UserServiceInterface,
   UserRepositoryInterface,
 } from "../interface/interface";
-import { UserCore, UserRegister, UserLogin, UserUpdate } from "../model/model";
-import { UserResponse } from "../dto/response/response";
+import { UserRegister, UserLogin, UserUpdate, UserResponse } from "../model/model";
 
 export class UserService implements UserServiceInterface {
   constructor(private repository: UserRepositoryInterface) {

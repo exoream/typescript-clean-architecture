@@ -22,7 +22,7 @@ export class UserController {
     try {
       const request: UserLogin = req.body as UserLogin;
       const { data: response, token } = await this.userService.login(request);
-      return res.status(200).json({ data: response, token });
+      return res.status(200).json({ data: "Success Login", token });
     } catch (error) {
       next(error);
     }
@@ -68,8 +68,8 @@ export class UserController {
         return res.status(401).json({ error: "Unauthorized" });
       }
 
-      const response = await this.userService.delete(userId);
-      return res.status(200).json({ data: response });
+      await this.userService.delete(userId);
+      return res.status(200).json({ data: "OK" });
     } catch (error) {
       next(error);
     }

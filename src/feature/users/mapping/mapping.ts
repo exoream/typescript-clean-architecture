@@ -1,6 +1,5 @@
 import { User, Prisma } from "@prisma/client";
-import { UserCore, UserLogin, UserRegister, UserUpdate } from "../model/model";
-import { UserResponse } from "../dto/response/response";
+import { UserCore, UserLogin, UserRegister, UserUpdate, UserResponse } from "../model/model";
 
 // User Model to Core
 export function userToCore(user: User): UserCore {
