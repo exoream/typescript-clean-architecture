@@ -55,9 +55,9 @@ export class UserRepository implements UserRepositoryInterface {
     return response;
   }
 
-  async delete(id: string): Promise<UserCore> {
+  async delete(id: string): Promise<UserResponse> {
     const data = await this.db.user.delete({ where: { id: id } });
-    const response = userToCore(data);
+    const response = userModelToUserResponse(data);
     return response;
   }
 

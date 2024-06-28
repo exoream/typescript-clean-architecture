@@ -99,7 +99,7 @@ export class UserService implements UserServiceInterface {
     return response;
   }
 
-  async delete(id: string): Promise<UserCore> {
+  async delete(id: string): Promise<UserResponse> {
     if (!id) {
       throw new ResponseError(400, "Id is required");
     }

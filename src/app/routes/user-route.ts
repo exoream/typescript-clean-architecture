@@ -15,6 +15,7 @@ userRoute.post("/login", userController.login.bind(userController));
 
 userRoute.get("/users", jwtMiddleware, userController.getAll.bind(userController));
 userRoute.get("/users/:id", jwtMiddleware, userController.getById.bind(userController));
+userRoute.delete("/users/:id", jwtMiddleware, userController.delete.bind(userController));
 
 
 

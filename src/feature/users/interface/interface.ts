@@ -7,7 +7,7 @@ export interface UserRepositoryInterface {
   getAll(): Promise<UserResponse[]>;
   getById(id: string): Promise<UserResponse>;
   update(id: string, user: UserCore): Promise<UserCore>;
-  delete(id: string): Promise<UserCore>;
+  delete(id: string): Promise<UserResponse>;
   getUserByEmail(email: string): Promise<UserCore | null>;
 }
 
@@ -17,5 +17,5 @@ export interface UserServiceInterface {
   getAll(): Promise<UserResponse[]>;
   getById(id: string): Promise<UserResponse>;
   update(id: string, user: UserCore): Promise<UserCore>;
-  delete(id: string): Promise<UserCore>;
+  delete(id: string): Promise<UserResponse>;
 }
