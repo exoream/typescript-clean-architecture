@@ -7,7 +7,7 @@ import {
   UserServiceInterface,
   UserRepositoryInterface,
 } from "../interface/interface";
-import { UserCore, UserRegister, UserLogin } from "../model/model";
+import { UserCore, UserRegister, UserLogin, UserUpdate } from "../model/model";
 import { UserResponse } from "../dto/response/response";
 
 export class UserService implements UserServiceInterface {
@@ -76,7 +76,7 @@ export class UserService implements UserServiceInterface {
     return response;
   }
 
-  async update(id: string, user: UserCore): Promise<UserCore> {
+  async update(id: string, user: UserUpdate): Promise<UserResponse> {
     const data = Validation.validate(UserValidation.UPDATE, user);
 
     if (!id) {

@@ -1,5 +1,5 @@
 import { UserRepositoryInterface } from "../interface/interface";
-import { UserCore, UserLogin, UserRegister } from "../model/model";
+import { UserCore, UserLogin, UserRegister, UserUpdate } from "../model/model";
 import { UserResponse } from "../dto/response/response";
 import { PrismaClient } from "@prisma/client";
 import {
@@ -7,7 +7,8 @@ import {
   coreToUser,
   listUserModelToUserResponse,
   userRegisterToModel,
-  userModelToUserResponse
+  userModelToUserResponse,
+  userUpdateToModel
 } from "../mapping/mapping";
 import { ResponseError } from "../../../utils/helper/response-error";
 
@@ -61,13 +62,13 @@ export class UserRepository implements UserRepositoryInterface {
     return response;
   }
 
-  async update(id: string, user: UserCore): Promise<UserCore> {
-    const request = coreToUser(user);
+  async update(id: string, user: UserUpdate): Promise<UserResponse> {
+    const request = userUpdateToModel(user);
     const data = await this.db.user.update({
       where: { id: id },
       data: request,
     });
-    const response = userToCore(data);
+    const response = userModelToUserResponse(data);
     return response;
   }
 

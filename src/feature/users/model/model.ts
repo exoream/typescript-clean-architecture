@@ -18,3 +18,9 @@ export type UserLogin = {
   email: string;
   password: string;
 };
+
+export type UserUpdate = {
+  name: string;
+  email: string;
+  password: string;
+};

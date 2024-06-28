@@ -1,5 +1,5 @@
 import { User, Prisma } from "@prisma/client";
-import { UserCore, UserLogin, UserRegister } from "../model/model";
+import { UserCore, UserLogin, UserRegister, UserUpdate } from "../model/model";
 import { UserResponse } from "../dto/response/response";
 
 // User Model to Core
@@ -39,6 +39,14 @@ export function listCoresToUsers(users: UserCore[]): User[] {
 }
 
 export function userRegisterToModel(user: UserRegister): Prisma.UserCreateInput {
+  return {
+    name: user.name,
+    email: user.email,
+    password: user.password,
+  };
+}
+
+export function userUpdateToModel(user: UserUpdate): Prisma.UserUpdateInput {
   return {
     name: user.name,
     email: user.email,
