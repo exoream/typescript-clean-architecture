@@ -81,7 +81,7 @@ export class UserService implements UserServiceInterface {
     if (!id) {
       throw new ResponseError(400, "Id is required");
     }
-
+    
     if (data.name) {
       user.name = data.name;
     }
@@ -91,8 +91,13 @@ export class UserService implements UserServiceInterface {
     }
 
     if (data.password) {
-      user.password = await hashPassword(data.password);
+      const hashedPassword = await hashPassword(data.password);
+      data.password = hashedPassword;
+      user.password = data.password;
+      console.log('Hashed Password', user.password);
     }
+
+    console.log('Update Data:', data);
 
     const response = this.repository.update(id, data);
     return response;
