@@ -32,3 +32,7 @@ npm run build
 # Mulai server
 npm run start
 ```
+
+### References
+- [TypeScript](https://www.typescriptlang.org/)
+- [Prisma](https://www.prisma.io/docs/getting-started)
