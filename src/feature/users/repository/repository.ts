@@ -3,7 +3,6 @@ import { UserCore, UserLogin, UserRegister, UserUpdate, UserResponse } from "../
 import { PrismaClient } from "@prisma/client";
 import {
   userToCore,
-  coreToUser,
   listUserModelToUserResponse,
   userRegisterToModel,
   userModelToUserResponse,

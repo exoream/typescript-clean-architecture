@@ -14,29 +14,7 @@ export function userToCore(user: User): UserCore {
   };
 }
 
-// Core Model to User
-export function coreToUser(user: UserCore): User {
-  return {
-    id: user.id,
-    email: user.email,
-    name: user.name,
-    password: user.password,
-    role: user.role,
-    created_at: new Date(user.createdAt),
-    updated_at: new Date(user.updatedAt),
-  };
-}
-
-// List of User Model to Core
-export function listUsersToCores(users: User[]): UserCore[] {
-  return users.map((user) => userToCore(user));
-}
-
-// List of Core Model to User
-export function listCoresToUsers(users: UserCore[]): User[] {
-  return users.map((user) => coreToUser(user));
-}
-
+// User Register to Model
 export function userRegisterToModel(user: UserRegister): Prisma.UserCreateInput {
   return {
     name: user.name,
@@ -45,6 +23,7 @@ export function userRegisterToModel(user: UserRegister): Prisma.UserCreateInput 
   };
 }
 
+// User Update to Model
 export function userUpdateToModel(user: UserUpdate): Prisma.UserUpdateInput {
   return {
     name: user.name,
@@ -53,6 +32,7 @@ export function userUpdateToModel(user: UserUpdate): Prisma.UserUpdateInput {
   };
 }
 
+// User Model to Response
 export function userModelToUserResponse(user: User): UserResponse {
   return {
     id: user.id,
@@ -63,10 +43,12 @@ export function userModelToUserResponse(user: User): UserResponse {
   };
 }
 
+// List User Model to User Response
 export function listUserModelToUserResponse(users: User[]): UserResponse[] {
   return users.map((user) => userModelToUserResponse(user));
 }
 
+// User Login to User Model
 export function userLoginToUserModel(user: UserLogin): Prisma.UserWhereUniqueInput {
   return {
     email: user.email,
