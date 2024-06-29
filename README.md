@@ -1,5 +1,6 @@
 # Setup Project
 
+## Clone Project
 ```
 git clone https://github.com/exoream/typescript-clean-architecture.git
 ```
@@ -25,7 +26,7 @@ npx prisma generate
 
 ## Build and Start the Project
 ```
-# Kompilasi proyek
+# Build project ke JavaScript
 npm run build
 
 # Mulai server
