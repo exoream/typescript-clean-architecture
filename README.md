@@ -1,21 +1,21 @@
-# Setup Project
+## Setup Project
 
-## Clone Project
+### Clone Project
 ```
 git clone https://github.com/exoream/typescript-clean-architecture.git
 ```
 
-## Install Dependencies
+### Install Dependencies
 ```
 npm install
 ```
 
-## Create .env file
+### Create .env file
 ```
 DATABASE_URL="mysql://root:mypassword@localhost:3306/mydb"
 ```
 
-## Setup Database
+### Setup Database
 ```
 # Menerapkan migrasi database
 npx prisma migrate dev
@@ -24,7 +24,7 @@ npx prisma migrate dev
 npx prisma generate
 ```
 
-## Build and Start the Project
+### Build and Start the Project
 ```
 # Build project ke JavaScript
 npm run build
